@@ -1,0 +1,56 @@
+def letter_guess():
+    import string
+    import random
+    letty = string.ascii_lowercase
+    letter = random.choice(letty)
+    guess_count = 5
+    print("\n")   
+    
+    while True:
+        try:
+
+            answer = input("Guess a letter: ").lower()
+            while answer != letter and answer in letty and guess_count > 0 and answer != "":
+                guess_count -= 1 
+                if guess_count == 0:
+                    print("You didnt guess the letter.")
+                    while True:
+                        try:
+                            ans = input("Would you like to play again? (type only yes or no) ").lower()
+                            if ans == "yes":
+                                letter_guess()
+                            elif ans == "no":
+                                quit()
+                            else:
+                                raise Exception
+                        except Exception:
+                            print("Please only type yes or no.")
+                        
+                print(f"\nYou have {guess_count} try's left.")
+                answer = input("Guess a letter: ").lower()
+
+                
+
+            if answer not in letty or answer == "":
+                raise Exception
+
+        except Exception:
+            print("\nThats not a letter.")
+        
+        else:
+            if guess_count > 0:
+                print("You guessed the letter.")
+                while True:
+                        try:
+                            ans = input("Would you like to play again? (type only yes or no) ").lower()
+                            if ans == "yes":
+                                letter_guess()
+                            elif ans == "no":
+                                quit()
+                            else:
+                                raise Exception
+                        except Exception:
+                               print("Please only type yes or no.")
+letter_guess()
+
+    
